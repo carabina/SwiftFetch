@@ -16,8 +16,6 @@ public enum FetchResponse {
 public enum FetchError: Error {
     case badResponse
     case serverError
-    case endpointIsNil
-    case incompleteRequest
 }
 
 final public class Fetch {
@@ -114,30 +112,26 @@ final public class Fetch {
         return self
     }
         
-    public func request() -> URLRequest? {
-        guard let endpoint = self.endpoint else { return nil }
+    public func request() -> URLRequest {
+        guard let endpoint = self.endpoint else {
+            fatalError("endpoint is nil") // should never happen actually
+        }
         
         guard let request = Request.genericRequest(endpoint: endpoint, options: [
             "params": self.params as AnyObject,
             "headers": self.headers as AnyObject,
             "type": self.type as AnyObject])
-            else {
-                return nil
+        else {
+            fatalError("request is incomplete") // should never happen actually
         }
         
         return request
     }
     
     @discardableResult
-    public func execute(_ session: URLSession? = nil) -> URLSessionDataTask? {
+    public func execute(_ session: URLSession? = nil) -> URLSessionDataTask {
         guard let endpoint = self.endpoint else {
-            if let completionBlock = self.completionBlock {
-                completionBlock(.failure(FetchError.endpointIsNil, -1))
-                
-                return nil
-            }
-            
-            fatalError("completion block and endpoint are both nil, what are you expecting to happen?")
+            fatalError("endpoint is nil") // should never happen actually
         }
         
         guard let request = Request.genericRequest(endpoint: endpoint, options: [
@@ -145,13 +139,7 @@ final public class Fetch {
             "headers": self.headers as AnyObject,
             "type": self.type as AnyObject]
         ) else {
-            if let completionBlock = self.completionBlock {
-                completionBlock(.failure(FetchError.incompleteRequest, -1))
-                
-                return nil
-            }
-                
-            fatalError("completion block is nil and reqiest is incomplete, what are you expecting to happen?")
+            fatalError("request is incomplete") // should never happen actually
         }
         
         let task = (session ?? Fetch.defaultSession).dataTask(with: request) { (data, response, error) in
