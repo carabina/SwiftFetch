@@ -1,0 +1,16 @@
+PODS:
+  - SwiftFetch (0.1.0)
+
+DEPENDENCIES:
+  - SwiftFetch (from `../`)
+
+EXTERNAL SOURCES:
+  SwiftFetch:
+    :path: ../
+
+SPEC CHECKSUMS:
+  SwiftFetch: b3db5e6392628e3ff7bebbb4a509a862b79d0b72
+
+PODFILE CHECKSUM: dbde992fbdb9827586d6834e48fac0ba698f2eab
+
+COCOAPODS: 1.4.0

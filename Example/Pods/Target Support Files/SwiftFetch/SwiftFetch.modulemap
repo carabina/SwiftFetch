@@ -1,0 +1,6 @@
+framework module SwiftFetch {
+  umbrella header "SwiftFetch-umbrella.h"
+
+  export *
+  module * { export * }
+}

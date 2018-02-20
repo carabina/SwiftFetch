@@ -1,0 +1,22 @@
+{
+  "name": "SwiftFetch",
+  "version": "0.1.0",
+  "summary": "A short description of SwiftFetch.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/yury@dymov.me/SwiftFetch",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "yury@dymov.me": "yury@dymov.me"
+  },
+  "source": {
+    "git": "https://github.com/yury@dymov.me/SwiftFetch.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SwiftFetch/Classes/**/*"
+}
