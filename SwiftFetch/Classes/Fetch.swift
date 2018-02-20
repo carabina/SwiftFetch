@@ -154,9 +154,8 @@ final public class Fetch {
             fatalError("completion block is nil and reqiest is incomplete, what are you expecting to happen?")
         }
         
-        let task = (session ?? Fetch.defaultSession).dataTask(with: request) { [weak self ](data, response, error) in
-            guard let weakSelf = self else { return }
-            guard let completionBlock = weakSelf.completionBlock else { return }
+        let task = (session ?? Fetch.defaultSession).dataTask(with: request) { (data, response, error) in
+            guard let completionBlock = self.completionBlock else { return }
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
                 return completionBlock(.failure(error ?? FetchError.badResponse, -1))
