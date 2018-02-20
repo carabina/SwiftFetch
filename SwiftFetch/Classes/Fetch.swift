@@ -24,7 +24,6 @@ final public class Fetch {
     private var params: [String:AnyObject] = [:]
     private var headers: [String:String] = [:]
     private var completionBlock: ((FetchResponse) -> Void)?
-    private var uploadProgressBlock: ((Int64, Int64) -> Void)?
     private var token: String?
     
     private static let defaultSession = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
