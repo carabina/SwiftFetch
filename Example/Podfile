@@ -1,0 +1,6 @@
+use_frameworks!
+target 'SwiftFetch_Tests' do
+  pod 'SwiftFetch', :path => '../'
+  
+  
+end
